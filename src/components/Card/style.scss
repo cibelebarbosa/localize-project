@@ -1,0 +1,88 @@
+@use "../../utilities/variables.scss" as v;
+
+.card {
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  width: min-content;
+  border-radius: 0.5rem;
+  border: #5858582f solid 1px;
+  background-color: #ffffff;
+}
+
+.header {
+  padding: 2.5rem 2.5rem 1rem 2.5rem;
+}
+
+.content {
+  padding: 0rem 1rem 1rem 1rem;
+  margin: 0 auto;
+  width: max-content;
+  &__table {
+    @extend .content;
+    display: inline-block;
+  }
+}
+
+.title {
+  color: #000000;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  margin-top: 0.75rem;
+  padding: 0.3rem 0rem;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  justify-content: center;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1px solid #000000;
+  background-color: #000000;
+
+  &__outline {
+    @extend .btn;
+    background-color: #ffffff;
+    border: none;
+    color: #00000088;
+  }
+  &__sm {
+    @extend .btn;
+    width: 11%;
+    float: right;
+    margin-bottom: 1rem;
+  }
+}
+
+.input {
+  width: 20vw;
+  height: 2rem;
+  background-color: #05060f0a;
+  border-radius: 0.2rem;
+  padding: 0 1rem;
+  border: 1px solid #00000010;
+  font-size: 1rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.7rem;
+  color: #000000cc;
+  padding: 1rem 0.5rem 0.5rem 0px;
+}
+
+.link-register {
+  display: block;
+  text-decoration: none;
+  color: v.$secondary-color;
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 1.3rem;
+}
