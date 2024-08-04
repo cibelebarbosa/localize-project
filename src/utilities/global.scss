@@ -14,7 +14,9 @@ html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockq
   text-size-adjust: none;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+body{
+  background-color: rgb(234, 235, 234);
+}
 footer, header, nav, section, main{
   display: block;
 }
@@ -68,4 +70,84 @@ input{
 
 .table-icons{
     display: inline-flex;
+}
+
+button{
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-flex;
+  margin-top: 0.75rem;
+  padding: 0.3rem 0rem;
+  color: #ffffff;
+  font-size: 0.7rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  justify-content: center;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1px solid #000000;
+  background-color: #000000;
+
+  &__outline {
+    @extend .btn;
+    background-color: #ffffff;
+    border: none;
+    color: #00000088;
+  }
+  &__sm {
+    @extend .btn;
+    width: 11%;
+    float: right;
+    margin-bottom: 1rem;
+  }
+  &__table {
+    @extend .btn;
+    padding: 0 0.9rem;
+    margin-top: 0;
+    font-size: 0.6rem;
+  }
+  &__cancel {
+    @extend .btn;
+    background-color: red;
+    border-color: red;
+    margin-left: 1rem;
+  }
+}
+
+.input {
+  width: 20vw;
+  height: 2rem;
+  background-color: #05060f0a;
+  border-radius: 0.2rem;
+  padding: 0 1rem;
+  border: 1px solid #00000010;
+  font-size: 1rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.7rem;
+  color: #000000cc;
+  padding: 1rem 0.5rem 0.5rem 0px;
+}
+
+.cell {
+  background-color: white;
+  padding: 0.8rem 0.625rem;
+  text-align: center;
+  &__nome {
+    @extend .cell;
+    text-align: start;
+    width: 50%;
+  }
+  &__gray {
+    @extend .cell;
+    background-color: rgb(234, 235, 234);
+  }
+  &__icons {
+    @extend .cell;
+    text-align: end;
+  }
 }

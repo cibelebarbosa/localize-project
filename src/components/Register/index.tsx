@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import variaveis from "../../variables";
+import AlertCustom from "../AlertCustom";
 
 type RegisterFormSchema = {
   username: string;
@@ -12,6 +13,8 @@ type RegisterFormSchema = {
 export default function Register() {
   const { register, handleSubmit, reset } = useForm<RegisterFormSchema>();
   const [dataForm, setDataForm] = useState<RegisterFormSchema>();
+  const [msg, setMsg] = useState<string>("");
+  const navigate = useNavigate();
 
   function handleSubmitForm(data: RegisterFormSchema) {
     setDataForm(data);
@@ -24,18 +27,27 @@ export default function Register() {
 
   useEffect(() => {
     if (!dataForm) return;
-    let options = {
-      method: "POST",
-      headers: variaveis.headers,
+    fetch(`${variaveis.urlBase}user`, {
+      ...variaveis.optionsPost,
       body: JSON.stringify(dataForm),
-    };
-    fetch(variaveis.urlBase, options).then((response) => {
-      alert("cadastro realizado com sucesso!");
-    });
+    })
+      .then((resp) => {
+        messageAlert("Cadastro realizado com sucesso!");
+      })
+      .catch((err) => messageAlert(err));
   }, [dataForm]);
+
+  function messageAlert(respMsg: string) {
+    setMsg(respMsg);
+    setTimeout(() => {
+      setMsg("");
+      navigate(`/`);
+    }, 2000);
+  }
 
   return (
     <>
+      {msg !== "" ? <AlertCustom message={msg} /> : <></>}
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         <div className="content">
           <label className="label">Nome</label>

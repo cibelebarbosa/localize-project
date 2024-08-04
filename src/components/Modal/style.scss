@@ -1,0 +1,25 @@
+.modal-card {
+  width: min-content;
+  height: fit-content;
+  position: fixed;
+  background-color: rgb(255, 250, 250);
+  border-radius: 10px;
+  border: 1px solid rgb(206, 206, 206);
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.066);
+  display: flex;
+}
+
+.modal-heading {
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+

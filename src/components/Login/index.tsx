@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import "./style.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import variaveis from "../../variables";
+import { useEffect, useState } from "react";
+import AlertCustom from "../AlertCustom";
 
 type LoginFormSchema = {
   email: string;
@@ -9,14 +12,47 @@ type LoginFormSchema = {
 
 export default function Login() {
   const { register, handleSubmit } = useForm<LoginFormSchema>();
+  const [dataForm, setDataForm] = useState<LoginFormSchema>();
+  const [msg, setMsg] = useState<string>("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!dataForm) return;
+    fetch(`${variaveis.urlBase}user/login`, {
+      ...variaveis.optionsPost,
+      body: JSON.stringify(dataForm),
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp.message) {
+          messageAlert(resp.message);
+          return;
+        }
+        navigate(`/client/${resp.user_id}`, {
+          state: { user_id: resp.user_id },
+        });
+      })
+      .catch((err) => {
+        messageAlert(err);
+      });
+  }, [dataForm]);
 
   function handleSubmitForm(data: LoginFormSchema) {
-    console.log(data);
+    setDataForm(data);
+  }
+
+  function messageAlert(respMsg: string) {
+    setMsg(respMsg);
+    setTimeout(() => {
+      setMsg("");
+    }, 2000);
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleSubmitForm)}>
+      {msg !== "" ? <AlertCustom message={msg} /> : <></>}
+
+      <form className="form-login" onSubmit={handleSubmit(handleSubmitForm)}>
         <div className="content">
           <label className="label">E-mail</label>
           <input className="input" type="text" {...register("email")} />
@@ -25,11 +61,9 @@ export default function Login() {
           <label className="label">Senha</label>
           <input className="input" type="text" {...register("password")} />
           <div className="actions">
-            <Link to="/client">
-              <button className="btn" type="submit">
-                Entrar
-              </button>
-            </Link>
+            <button className="btn" type="submit">
+              Entrar
+            </button>
           </div>
         </div>
       </form>

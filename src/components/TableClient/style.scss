@@ -23,29 +23,6 @@
   }
 }
 
-.cell {
-  background-color: white;
-  padding: 0.8rem 0.625rem;
-  text-align: center;
-  &__nome {
-    @extend .cell;
-    text-align: start;
-    width: 50%;
-  }
-  &__gray {
-    @extend .cell;
-    background-color: rgb(234, 235, 234);
-  }
-  &__icons {
-    @extend .cell;
-    text-align: end;
-  }
-}
-
-// .cell:nth-child(even) {
-//   background: rgb(234, 235, 234);
-// }
-
 .rounded {
   border: 5px solid #a9fcae;
   border-radius: 50%;
@@ -74,4 +51,5 @@
   font-size: 1.5rem;
   font-weight: 900;
   line-height: 2rem;
+  max-width: 60%;
 }
