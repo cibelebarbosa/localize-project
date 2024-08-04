@@ -1,5 +1,5 @@
 export default class variaveis {
-  static urlBase = "http://localize-project-server.onrender.com:80/";
+  static urlBase = "http://localize-project-server-1.onrender.com:80/";
   static headers = {
     "Content-Type": "application/json",
     AllowLocalHost: "true",
