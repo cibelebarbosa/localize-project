@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/client",
-    element: <CardCustom children={<TableClient />} table={true}/>
+    element: <TableClient/>
   },
   {
     path: `/client/:user_id`,
